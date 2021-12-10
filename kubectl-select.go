@@ -96,6 +96,7 @@ func displayAndChooseConfig(config kubernetesConfig) {
 	}
 
 	prompt := promptui.Select{
+		Label: "kubectl config get-contexts",
 		Items: config.Contexts,
 		Templates: &promptui.SelectTemplates{
 			Active: "{{ .Name | cyan | underline }}" +
