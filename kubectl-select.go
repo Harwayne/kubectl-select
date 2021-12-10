@@ -9,6 +9,9 @@ import (
 	"text/template"
 
 	"github.com/manifoldco/promptui"
+
+	// Removes the bell that otherwise rings everytime the line changes.
+	_ "github.com/Harwayne/kubectl-select/pkg/removebell"
 )
 
 var (
@@ -23,11 +26,11 @@ func main() {
 
 type kubernetesConfig struct {
 	Contexts       []kubernetesContextEntry `json:"contexts"`
-	CurrentContext string            `json:"current-context"`
+	CurrentContext string                   `json:"current-context"`
 }
 
 type kubernetesContextEntry struct {
-	Name    string     `json:"name"`
+	Name    string            `json:"name"`
 	Context kubernetesContext `json:"context"`
 }
 
@@ -109,7 +112,7 @@ func displayAndChooseConfig(config kubernetesConfig) {
 				"{{ end }}",
 			FuncMap: f,
 		},
-		Size: len(config.Contexts),
+		Size:         len(config.Contexts),
 		HideSelected: true,
 	}
 	i, _, err := prompt.RunCursorAt(activeIndex, 0)

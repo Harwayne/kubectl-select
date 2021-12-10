@@ -1,4 +1,4 @@
-module kubectl-select
+module github.com/Harwayne/kubectl-select
 
 go 1.17
 
